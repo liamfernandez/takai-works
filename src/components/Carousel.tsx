@@ -1,5 +1,4 @@
 import type { JSX } from 'preact/jsx-runtime';
-import { useState } from 'preact/hooks'
 
 export default function Carousel(): JSX.Element {
     const prefixPath: string = 'HelloWhyAreYouSavingMyImage_TAKAI';

@@ -13,7 +13,6 @@ html, body {width: 100% !important; height: 100% !important;}
 }
 
 p, a, span {
-    font-family: 'Inconsolata';
     font-weight: 400;
     line-height: 1.5em;
     letter-spacing: 0em;
@@ -24,13 +23,9 @@ p, a, span {
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.4s ease-in-out;
-
-    &.show {
-        max-height: 100vh;
-    }
 }
 
-.toggle:checked + .lbl-toggle + .collapsible-content {
+.show {
     max-height: 100vh;
 }
 
