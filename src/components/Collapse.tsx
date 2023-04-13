@@ -77,22 +77,33 @@ function AnimateAndShowContent(title: string): void {
     // THIS IS THE ONE TO OPEN
     let plus = document.getElementById(`${title}`); // trigger plus to minus animation
     let hiddenContent = document.getElementById(`${title}-hiddenstuff`); // hidden text
-    plus?.classList.toggle('active');
-    hiddenContent?.classList.toggle('show')
+    const delay:boolean = HideAllExcept(title);
+    if (delay) {
+        setTimeout(() => {
+            plus?.classList.toggle('active');
+            hiddenContent?.classList.toggle('show')
+        }, 275)
+    }
+    else {
+        plus?.classList.toggle('active');
+        hiddenContent?.classList.toggle('show')
+    }
 
-    HideAllExcept(title);
 }
 
-function HideAllExcept(title: string): void {
+function HideAllExcept(title: string): boolean {
     const listOfIds: string[] = ['Experience', 'Playlist', 'Education'].filter((val) => val !== title)
+    let valToReturn:boolean = false;
     // console.log(listOfIds)
 
     listOfIds.forEach((id) => {
         let plus = document.getElementById(id);
         let hiddenContent = document.getElementById(`${id}-hiddenstuff`);
         if (plus?.classList.contains('active')) {
+            valToReturn = true;
             plus.classList.toggle('active')
             hiddenContent?.classList.toggle('show')
         }
     })
+    return valToReturn;
 }

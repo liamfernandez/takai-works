@@ -60,8 +60,8 @@ export default function Gallery(): JSX.Element {
                 </div>
                 {orderOfPics.map((num:number) => {
                     return (
-                        <li id={`${prefixPath}${num}`} className={`mx-[1px] carousel-item w-full md:w-fit`}>
-                            <img src={`./assets/${prefixPath}${num}.jpg`} className={`2xl:h-[22.5em] md:h-[302px] h-fit`}/>
+                        <li id={`${prefixPath}${num}`} className={`mx-[1px] carousel-item h-full w-fit md:w-fit`}>
+                            <img src={`./assets/${prefixPath}${num}.jpg`} className={`2xl:h-[22.5em] h-[302px]`}/>
                         </li>
                     );
                 })}
