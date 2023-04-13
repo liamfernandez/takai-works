@@ -5,7 +5,6 @@ export default function Gallery(): JSX.Element {
     const prefixPath: string = 'HelloWhyAreYouSavingMyImage_TAKAI';
 
     const orderOfPics: number[] = [1,2,3,4,5,6,7,8,9,10,11];
-    const [focusedPic, setFocusedPic] = useState<number>(3); //default center pic is 3
     const [showLeft, setShowLeft] = useState<boolean>(false);
     const [showRight, setShowRight] = useState<boolean>(true);
 
@@ -59,11 +58,20 @@ export default function Gallery(): JSX.Element {
                     </button>
                 </div>
                 {orderOfPics.map((num:number) => {
-                    return (
-                        <li id={`${prefixPath}${num}`} className={`mx-[1px] carousel-item h-full w-fit md:w-fit`}>
-                            <img src={`./assets/${prefixPath}${num}.jpg`} className={`2xl:h-[22.5em] h-[302px]`}/>
-                        </li>
-                    );
+                    if (num === 7) {
+                        return (
+                            <li id={`${prefixPath}${num}`} className={`mx-[1px] carousel-item h-full`}>
+                                <img src={`./assets/${prefixPath}${num}.jpg`} className={`2xl:h-[22.5em] h-[302px]`}/>
+                            </li>
+                        );
+                    }
+                    else {
+                        return (
+                            <li id={`${prefixPath}${num}`} className={`mx-[1px] carousel-item h-full w-fit`}>
+                                <img src={`./assets/${prefixPath}${num}.jpg`} className={`2xl:h-[22.5em] h-[302px]`}/>
+                            </li>
+                        );
+                    }
                 })}
             </ul>
     );
