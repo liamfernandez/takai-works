@@ -6,8 +6,8 @@ import Gallery from "../components/Gallery";
 const instagram:string = "https://www.instagram.com/melissatakai";
 ---
 <Layout title="TAKAI WORKS">
-	<nav class="pt-[2.74vw] pl-[6vw] pr-[6vw] pb-[2.6vw]">
-		<div class=" flex justify-between items-center">
+	<nav class="md:pt-[2.74vw] pt-8 pl-[6vw] pr-[6vw] pb-8 md:pb-[2.6vw]">
+		<div class="flex justify-between items-center">
 			<a href="/" class="text-[.89em]">TAKAI WORKS</a>
 			<div class=" flex flex-row items-center">
 				<!-- <a href={instagram} class=" text-[.89em] box-border underline mr-2 underline-offset-[6px] decoration-1">INSTAGRAM</a> -->
@@ -19,18 +19,17 @@ const instagram:string = "https://www.instagram.com/melissatakai";
 	</nav>
 
 	<section id='picture-showcase'>
-		<!-- <Carousel client:load/> -->
 		<Gallery client:load/>
 	</section>
 
 	<section id="more info">
-		<div class="mt-10 ml-[6vw] flex flex-row gap-8">
+		<div class="mt-10 ml-[6vw] flex md:flex-row flex-col gap-8">
 			<div class="flex flex-col">
 				<h2 class="pt-1 font-Inconsolata mb-8 text-[.89em] w-[22rem]">Melissa Takai is a multidisciplinary designer based in Seattle. On the weekends, she walks across town to play with words.</h2>
 				<span class=" text-[.89em]">+1 971.406.0770</span>
 				<a href="mailto:takaimelissa@gmail.com" class=" underline underline-offset-[3px] text-[.89em] decoration-1">takaimelissa@gmail.com</a>
 			</div>
-			<div class="pt-1 flex flex-col gap-[16px]">
+			<div class="pt-1 flex flex-col gap-[16px] pb-8 md:pb-0">
 				<CollapseGroup client:load />
 			</div>
 		</div>
