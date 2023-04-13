@@ -43,7 +43,6 @@ export default function Gallery(): JSX.Element {
                         let gallery = document.getElementById(`gallery`)
                         if (gallery?.scrollLeft > 300) {
                             gallery.scrollLeft -= 400
-                            // setFocusedPic(focusedPic - 1)
                         }
                     }}>
                         <img src={`/left-arrow.svg`} className={`w-[20px]`}/>
@@ -51,8 +50,6 @@ export default function Gallery(): JSX.Element {
                     <button id={`right-arrow`} className={rightArrowclass} onClick={() => {
                         let gallery = document.getElementById(`gallery`)
                         gallery.scrollLeft += 400
-                        // console.log(gallery?.scrollLeft)
-                        // setFocusedPic(focusedPic + 1);
                     }}>
                         <img src={`/right-arrow.svg`} className={`w-[20px]`}/>
                     </button>
