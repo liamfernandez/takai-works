@@ -74,14 +74,13 @@ function Collapse(props: ICollapseProps): JSX.Element {
 }
 
 function AnimateAndShowContent(title: string): void {
-    // THIS IS THE ONE TO OPEN
-    let plus = document.getElementById(`${title}`); // trigger plus to minus animation
-    let hiddenContent = document.getElementById(`${title}-hiddenstuff`); // hidden text
+    let plus = document.getElementById(`${title}`);
+    let hiddenContent = document.getElementById(`${title}-hiddenstuff`);
     const delay:boolean = HideAllExcept(title);
     if (delay) {
         setTimeout(() => {
             plus?.classList.toggle('active');
-            hiddenContent?.classList.toggle('show')
+            hiddenContent?.classList.toggle('show');
         }, 275)
     }
     else {
@@ -92,17 +91,16 @@ function AnimateAndShowContent(title: string): void {
 }
 
 function HideAllExcept(title: string): boolean {
-    const listOfIds: string[] = ['Experience', 'Playlist', 'Education'].filter((val) => val !== title)
+    const listOfIds: string[] = ['Experience', 'Playlist', 'Education'].filter((val) => val !== title);
     let valToReturn:boolean = false;
-    // console.log(listOfIds)
 
     listOfIds.forEach((id) => {
         let plus = document.getElementById(id);
         let hiddenContent = document.getElementById(`${id}-hiddenstuff`);
         if (plus?.classList.contains('active')) {
             valToReturn = true;
-            plus.classList.toggle('active')
-            hiddenContent?.classList.toggle('show')
+            plus.classList.toggle('active');
+            hiddenContent?.classList.toggle('show');
         }
     })
     return valToReturn;
