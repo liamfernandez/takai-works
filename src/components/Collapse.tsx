@@ -2,6 +2,7 @@ import type { JSX } from 'preact/jsx-runtime';
 
 interface ICollapseProps {
     type: CollapseTypes;
+    hide?: boolean;
 }
 
 export enum CollapseTypes {
@@ -26,7 +27,7 @@ function GetBodyText(type: CollapseTypes): JSX.Element {
             );
         case CollapseTypes.Education:
             return (
-                <div className={`  mt-2 mb-2 flex flex-col gap-[2px]`}>
+                <div className={`mt-2 mb-2 flex flex-col gap-[2px]`}>
                     <span className={`  text-[0.89em]`}>BDes Visual Communication Design</span>
                     <span className={`  text-[0.89em]`}>University of Washington, 2021</span>
                     <span className={`  text-[0.89em]`}>School of Art + Art History + Design</span>
@@ -44,29 +45,54 @@ function GetBodyText(type: CollapseTypes): JSX.Element {
     }
 }
 
-export default function Collapse(props: ICollapseProps): JSX.Element {
-    const title:string = CollapseTypes[props.type];
-
+export default function CollapseGroup(): JSX.Element {
     return (
         <>
-            <button
-                className={`cursor-pointer flex flex-row items-center gap-[9.5px]`}
-                onClick={() => AnimateAndShowContent(title)}>
-                <div className={`plusminus`} id={`${CollapseTypes[props.type]}`}/>
-                <span className={`  text-[0.89em]`}>{CollapseTypes[props.type]}</span>
-            </button>
-            <div id={`${title}-hiddenstuff`} className={`hiddenstuff`}>
-                {GetBodyText(props.type)}
-            </div>
+            <Collapse type={CollapseTypes.Experience} />
+            <Collapse type={CollapseTypes.Education} />
+            <Collapse type={CollapseTypes.Playlist} />
         </>
     );
 }
 
-function AnimateAndShowContent(title: string): void {
-    let plus = document.getElementById(`${title}`);
-    plus?.classList.toggle('active');
+function Collapse(props: ICollapseProps): JSX.Element {
+    const title:string = CollapseTypes[props.type];
 
-    let hiddenContent = document.getElementById(`${title}-hiddenstuff`)
+    return (
+        <div>
+            <button
+                className={`cursor-pointer flex flex-row items-center gap-[9.5px]`}
+                onClick={() => AnimateAndShowContent(title)}>
+                <div id={`${title}`} className={`plusminus`} />
+                <span className={`text-[0.89em]`}>{title}</span>
+            </button>
+            <div id={`${title}-hiddenstuff`} className={`hiddenstuff`}>
+                {GetBodyText(props.type)}
+            </div>
+        </div>
+    );
+}
+
+function AnimateAndShowContent(title: string): void {
+    // THIS IS THE ONE TO OPEN
+    let plus = document.getElementById(`${title}`); // trigger plus to minus animation
+    let hiddenContent = document.getElementById(`${title}-hiddenstuff`); // hidden text
+    plus?.classList.toggle('active');
     hiddenContent?.classList.toggle('show')
-    console.log(hiddenContent?.classList)
+
+    HideAllExcept(title);
+}
+
+function HideAllExcept(title: string): void {
+    const listOfIds: string[] = ['Experience', 'Playlist', 'Education'].filter((val) => val !== title)
+    // console.log(listOfIds)
+
+    listOfIds.forEach((id) => {
+        let plus = document.getElementById(id);
+        let hiddenContent = document.getElementById(`${id}-hiddenstuff`);
+        if (plus?.classList.contains('active')) {
+            plus.classList.toggle('active')
+            hiddenContent?.classList.toggle('show')
+        }
+    })
 }
